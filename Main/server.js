@@ -1,11 +1,16 @@
 const inquirer = require('inquirer');
-const mysql = require('mysql');
-const connection = mysql.createConnection({
-    host: 'localhost',
+const mysql = require('mysql2');
+const db = mysql.createConnection({
+    host: '127.0.0.1',
     user: 'root',
     password: '',
     database: 'employee_tracker'
 });
+db.connect (err => {
+    console.log('ping');
+    if (err) throw err;
+    displayMenu ();
+  });
 
     function displayMenu() {
         inquirer.prompt([
@@ -27,13 +32,15 @@ const connection = mysql.createConnection({
         ])
 
  .then(answer => {
-    switch (answer.choices) {
+    switch (answer.menu) {
         case 'View All Departments':
             viewAllDepartments();
             break;
         case 'View All Roles':
+            viewAllRoles();
             break;  
         case 'View All Employees':
+            viewAllEmployees();
             break;
         case 'Add Department':
             break;
@@ -57,12 +64,31 @@ const connection = mysql.createConnection({
 }
 function viewAllDepartments() {
     console.log('Selecting all departments...\n');
-    connection.query('SELECT * FROM department', (err, res) => {
+    db.query('SELECT * FROM department', (err, res) => {
         if (err) throw err;
-        console.log(res);
-        // displayMenu();
+        console.table(res);
+        displayMenu();
     });
 };
+function viewAllRoles() {
+    console.log('Selecting all roles...\n');
+    db.query('SELECT * FROM role', (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        displayMenu();
+    });
+};
+
+function viewAllEmployees() {
+    console.log('Selecting all employees...\n');
+    db.query('SELECT * FROM employee', (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        displayMenu();
+    });
+};
+
+
 //  init();
 //  connection.connect();
- displayMenu();
+//  displayMenu();

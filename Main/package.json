@@ -1,6 +1,18 @@
 {
   "dependencies": {
+    "init": "^0.1.2",
     "inquirer": "^8.2.4",
-    "mysql": "^2.18.1"
-  }
+    "mysql": "^2.18.1",
+    "mysql2": "^3.5.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "main",
+  "description": "A command-line application to manage a company's employee database, using Node.js, Inquirer, and MySQL.",
+  "version": "1.0.0",
+  "main": "server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
