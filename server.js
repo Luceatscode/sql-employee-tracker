@@ -59,12 +59,6 @@ function displayMenu() {
                     console.log('Goodbye!');
                     process.exit();
                     break;
-
-                    // connection.end();
-                    // console.log('Goodbye!');
-                    // return;
-                    // default:
-                    //     console.log(`Invalid action: ${answer.action}`);
                     displayMenu();
             }
         });
@@ -172,7 +166,7 @@ function addEmployee() {
         })
 };
 
-function updateEmployeeRole () {
+function updateEmployeeRole() {
     console.log('Updating an employee role...\n');
     inquirer.prompt([
         {
@@ -192,13 +186,6 @@ function updateEmployeeRole () {
                 if (err) throw err;
                 console.table(res);
                 displayMenu();
-            }); 
+            });
         });
 };
-
-
-
-
-//  init();
-//  connection.connect();
-//  displayMenu();
